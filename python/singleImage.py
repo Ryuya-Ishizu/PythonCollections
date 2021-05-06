@@ -6,7 +6,7 @@ from requests_oauthlib import OAuth1Session
 import time
 import json
 json_open = open(
-    '/home/runner/work/twitter/twitter/python/singleCollection.json', 'r', encoding="utf-8")
+    '/home/runner/work/PythonCollections/PythonCollections/python/singleCollection.json', 'r', encoding="utf-8")
 collections = json.load(json_open)
 
 # 認証に必要なキーとトークン
