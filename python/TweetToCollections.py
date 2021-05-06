@@ -1,3 +1,4 @@
+import os
 import tweepy
 import requests
 from requests_oauthlib import OAuth1Session
