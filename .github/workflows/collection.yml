@@ -1,9 +1,9 @@
 name: Collection
 
-on: workflow_dispatch
-# on:
-#   schedule:
-#     - cron: "0 3 * * *" # cronで定期実行:日本時間12:00
+# on: workflow_dispatch
+on:
+  schedule:
+    - cron: "0 3 * * *" # cronで定期実行:日本時間12:00
 
 jobs:
   build:
