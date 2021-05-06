@@ -1,0 +1,32 @@
+name: SingleCollection
+
+# on: workflow_dispatch
+on:
+  schedule:
+    - cron: "0 3 * * *" # cronで定期実行:日本時間12:00
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 最新のubuntu環境で下記のジョブを実行
+    steps:
+      - uses: actions/checkout@v2 # おまじない
+
+      - name: Setup python # ワークフローのセクションごとに設定する名前。特に設定する必要はないが、どこでエラーが起きているかを把握する為にも設定しておいた方が良い。
+        uses: actions/setup-python@v2 # Pythonのセットアップ
+        with:
+          python-version: "3.x" # Pythonのバージョン指定
+
+      - name: Install dependencies # Pythonの依存環境のインストール
+        run: | #このような書き方で複数行を一気に実行することができる。
+          python -m pip install --upgrade pip
+          pip install requests
+          pip install requests_oauthlib
+          pip install tweepy
+      - name: Run singleImage.py # Pythonファイルの実行
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_SECRET: ${{ secrets.API_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+        run: |
+          python python/singleImage.py
