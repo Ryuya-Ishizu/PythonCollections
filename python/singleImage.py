@@ -26,8 +26,8 @@ tw = OAuth1Session(API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth, wait_on_rate_limit=True)
 # tweet
 # api.update_status("Hello Tweepy")
-information = []
 for collection in collections.values():
+    information = []
     for tweet in tweepy.Cursor(api.user_timeline, id=collection["creater"]).items(30):
         information.insert(0, tweet)
         time.sleep(1)
